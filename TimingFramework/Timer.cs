@@ -59,9 +59,11 @@ namespace TimingFramework
         }
         public void RunMultipleTests(int NumOfTests)
         {
-            Console.WriteLine("Running Test!");
+            LoadingBar Bar = new LoadingBar(NumOfTests,0);
+            Console.WriteLine("Running Tests!");
             for (int i = 0; i < NumOfTests; i++)
             {
+                Bar.Draw(i+1);
                 TimeStampThen = DateTime.Now;
                 bool Passed = RunMethod();
                 TimeStampNow = DateTime.Now;
@@ -72,11 +74,11 @@ namespace TimingFramework
                 }
                 else
                 {
-                    Console.WriteLine("Test Failed!");
+                    Console.WriteLine("Tests Failed!");
                     i = NumOfTests + 1;
                 }
             }
-            Console.WriteLine("Test Complete!");
+            Console.WriteLine("Tests Complete!");
         }
 
         //Get/Edit test Data!
