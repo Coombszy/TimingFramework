@@ -16,13 +16,14 @@ namespace TimingFramework
             List<object> Data = new List<object>() { "TEST" };
             TestTimer.SetData(Data);
             TestTimer.SetMethod(ToParse);
-            TestTimer.DEBUG_run();
+            TestTimer.RunMultipleTests(10);
+            Console.WriteLine(TestTimer.GetAllTestTimes()[0]+"");
         }
         public static void ToParse(List<object> data)
         {
-            if (data.Contains("TEST"))
+            for(int i = 0; i < 909000000; i++)
             {
-                Console.WriteLine("Matched!");
+                float x = (i * 3) / 9;
             }
         }
     }
