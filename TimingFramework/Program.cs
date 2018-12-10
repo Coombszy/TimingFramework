@@ -15,11 +15,11 @@ namespace TimingFramework
             Timer TestTimer = new Timer();
             List<object> Data = new List<object>() { "TEST" };
             TestTimer.SetData(Data);
-            TestTimer.SetMethod(ToParse);
+            TestTimer.SetMethod(ExampleMethodToTest);
             TestTimer.RunMultipleTests(10);
-            Console.WriteLine(TestTimer.GetAllTestTimes()[0]+"");
+            TestTimer.CreateCSV();
         }
-        public static void ToParse(List<object> data)
+        public static void ExampleMethodToTest(List<object> data)
         {
             for(int i = 0; i < 909000000; i++)
             {

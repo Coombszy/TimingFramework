@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Reflection;
 
 namespace TimingFramework
 {
@@ -93,6 +95,26 @@ namespace TimingFramework
         private void AddTestData(int TimeInSeconds)
         {
             TestData.Add(TimeInSeconds);
+        }
+        public void CreateCSV()
+        {
+            string NameAndLoc = "data.csv";
+            if (TestData == null || TestData.Count == 0)
+            {
+                Console.WriteLine("Failed to Write to a CSV!");
+                return; 
+            }
+            string newLine = Environment.NewLine;
+
+            using (var sw = new StreamWriter(NameAndLoc))
+            {
+                foreach (double item in TestData)
+                {
+                    sw.Write(item);
+                    sw.Write(newLine);
+                }
+            }
+            Console.WriteLine("Successfully Wrote to a CSV!");
         }
     }
 }
