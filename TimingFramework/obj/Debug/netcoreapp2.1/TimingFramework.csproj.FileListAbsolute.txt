@@ -1,0 +1,11 @@
+/Users/liamcoombs/Documents/Makers/C#/TimingFramework/TimingFramework/bin/Debug/netcoreapp2.1/TimingFramework.deps.json
+/Users/liamcoombs/Documents/Makers/C#/TimingFramework/TimingFramework/bin/Debug/netcoreapp2.1/TimingFramework.runtimeconfig.json
+/Users/liamcoombs/Documents/Makers/C#/TimingFramework/TimingFramework/bin/Debug/netcoreapp2.1/TimingFramework.runtimeconfig.dev.json
+/Users/liamcoombs/Documents/Makers/C#/TimingFramework/TimingFramework/bin/Debug/netcoreapp2.1/TimingFramework.dll
+/Users/liamcoombs/Documents/Makers/C#/TimingFramework/TimingFramework/bin/Debug/netcoreapp2.1/TimingFramework.pdb
+/Users/liamcoombs/Documents/Makers/C#/TimingFramework/TimingFramework/obj/Debug/netcoreapp2.1/TimingFramework.csprojAssemblyReference.cache
+/Users/liamcoombs/Documents/Makers/C#/TimingFramework/TimingFramework/obj/Debug/netcoreapp2.1/TimingFramework.csproj.CoreCompileInputs.cache
+/Users/liamcoombs/Documents/Makers/C#/TimingFramework/TimingFramework/obj/Debug/netcoreapp2.1/TimingFramework.AssemblyInfoInputs.cache
+/Users/liamcoombs/Documents/Makers/C#/TimingFramework/TimingFramework/obj/Debug/netcoreapp2.1/TimingFramework.AssemblyInfo.cs
+/Users/liamcoombs/Documents/Makers/C#/TimingFramework/TimingFramework/obj/Debug/netcoreapp2.1/TimingFramework.dll
+/Users/liamcoombs/Documents/Makers/C#/TimingFramework/TimingFramework/obj/Debug/netcoreapp2.1/TimingFramework.pdb
