@@ -96,7 +96,7 @@ namespace TimingFramework
             return data;
         }
 
-        //My Algrothms
+        //My Algorithms
         public static List<object> Shuffle(List<object> data)
         {
             Random rnd = new Random();
