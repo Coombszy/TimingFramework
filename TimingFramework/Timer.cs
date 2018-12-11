@@ -11,12 +11,13 @@ namespace TimingFramework
     public class Timer
     {
         //Variables!
-        public delegate void Method(List<object> data);//Deligates!
+        public delegate List<object> Method(List<object> data);//Deligates!
         private Method ToCall;//Method to be tested
         private List<object> DataParsed;//Data to be used with the method
-        private List<Double> TestData = new List<Double>();
+        private List<double> TimeData = new List<double>();
         private DateTime TimeStampThen;
         private DateTime TimeStampNow;
+        private List<object> ProducedData;
 
         //Accessors!
         public void SetMethod(Method MethodToTime)
@@ -33,7 +34,7 @@ namespace TimingFramework
         {
             if (ToCall != null && DataParsed != null)
             {
-                ToCall(DataParsed);
+                ProducedData = ToCall(DataParsed);
                 return true;
             }
             else
@@ -52,7 +53,7 @@ namespace TimingFramework
             {
                 Console.WriteLine("Test Complete!");
                 var Seconds = Math.Abs((TimeStampNow - TimeStampThen).TotalSeconds);
-                TestData.Add(Seconds);
+                TimeData.Add(Seconds);
             }
             else
             {
@@ -66,13 +67,14 @@ namespace TimingFramework
             for (int i = 0; i < NumOfTests; i++)
             {
                 Bar.Draw(i+1);
+                ProducedData = new List<object>();
                 TimeStampThen = DateTime.Now;
                 bool Passed = RunMethod();
                 TimeStampNow = DateTime.Now;
                 if (Passed)
                 {
                     var Seconds = Math.Abs((TimeStampNow - TimeStampThen).TotalSeconds);
-                    TestData.Add(Seconds);
+                    TimeData.Add(Seconds);
                 }
                 else
                 {
@@ -86,20 +88,45 @@ namespace TimingFramework
         //Get/Edit test Data!
         public List<double> GetAllTestTimes()
         {
-            return TestData;
+            return TimeData;
+        }
+        public double GetAverageTime()
+        {
+            double total = 0;
+            foreach(double item in TimeData)
+            {
+                total += item;
+            }
+            return total / TimeData.Count;
         }
         public void WipeAllTestTimes()
         {
-            TestData = new List<double>();
+            TimeData = new List<double>();
         }
         private void AddTestData(int TimeInSeconds)
         {
-            TestData.Add(TimeInSeconds);
+            TimeData.Add(TimeInSeconds);
+        }
+        public void WriteAllData()
+        {
+            int i = 0;
+            foreach(double time in TimeData)
+            {
+                i++;
+                Console.WriteLine("{0} - {1} Seconds", i, time);
+            }
+        }
+        public void WriteAlgorithmData()
+        {
+            foreach (object item in ProducedData)
+            {
+                Console.WriteLine(item);
+            }
         }
         public void CreateCSV()
         {
             string NameAndLoc = "data.csv";
-            if (TestData == null || TestData.Count == 0)
+            if (TimeData == null || TimeData.Count == 0)
             {
                 Console.WriteLine("Failed to Write to a CSV!");
                 return; 
@@ -108,7 +135,7 @@ namespace TimingFramework
 
             using (var sw = new StreamWriter(NameAndLoc))
             {
-                foreach (double item in TestData)
+                foreach (double item in TimeData)
                 {
                     sw.Write(item);
                     sw.Write(newLine);

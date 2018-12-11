@@ -1,8 +1,8 @@
 ﻿<Properties StartupConfiguration="{835D07B1-0450-4ACA-994B-C12A56E3187A}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="TimingFramework/Program.cs">
     <Files>
-      <File FileName="TimingFramework/Program.cs" Line="19" Column="42" />
-      <File FileName="TimingFramework/Timer.cs" Line="60" Column="53" />
+      <File FileName="TimingFramework/Program.cs" Line="17" Column="16" />
+      <File FileName="TimingFramework/Timer.cs" Line="92" Column="39" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.ItemProperties.TimingFramework PreferredExecutionTarget="MonoDevelop.Default" />
