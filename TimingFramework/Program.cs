@@ -25,23 +25,25 @@ namespace TimingFramework
 
             //--Test Data definition--
             Timer tmr = new Timer();
-            List<object> data = CreateTestDataSTRING(100000, 4);
-            //List<object> data = CreateTestDataINT(100000000);
+            //List<object> data = CreateTestDataSTRING(100000, 4);
+            //List<object> data = CreateTestDataINT(10000000);
+            //List<object> data = CreateTestDataBINARY(1000);
+            List<object> data = new List<object> { 10, 3, 1, 7 };
 
 
             //--Setting Test data--
             tmr.SetData(data);
-            tmr.SetMethod(MakeGroups);//<--- set method to test in here
+            tmr.SetMethod(SubSequence);//<--- set method to test in here
 
             //--Test Types--
-            tmr.RunMultipleTests(20);
+            tmr.RunMultipleTests(25);
             //tmr.RunTest();
 
             //--Exporting Data from the tests--
             Console.WriteLine("Average time: " + tmr.GetAverageTime() + " Seconds");
             //tmr.WriteAllData();
-            //tmr.WriteAlgorithmData();
-            tmr.CreateCSV();
+            tmr.WriteAlgorithmData();
+            //tmr.CreateCSV();
 
 
         }
@@ -51,7 +53,7 @@ namespace TimingFramework
             Random Rand = new Random();
             for (int i = 0; i < ListSize; i++)
             {
-                Data.Add(Rand.Next(0, 999999));
+                Data.Add(Rand.Next(0, 100));
             }
             return Data;
         }
@@ -70,6 +72,16 @@ namespace TimingFramework
                 NewStrings.Add(tmp);
             }
             return NewStrings;
+        }
+        public static List<object> CreateTestDataBINARY(int ListSize)
+        {
+            List<object> data = new List<object>();
+            Random rnd = new Random();
+            for(int i = 0; i < ListSize; i++)
+            {
+                data.Add(rnd.Next(0, 2));
+            }
+            return data;
         }
         public static void WriteList(List<object> data)
         {
@@ -153,6 +165,98 @@ namespace TimingFramework
             }
             return Groups.ToList();
         }
+        public static List<object> RemoveDuplicates(List<object> data)
+        {
+            List<object> NewData = new List<object>();
+            foreach(object item in data)
+            {
+                if(NewData.Contains(item) == false)
+                {
+                    NewData.Add(item);
+                }
+            }
+            return NewData;
+        }
+        public static List<object> MostFrequent(List<object> data)
+        {
+            Dictionary<object, int> Freq = new Dictionary<object, int>();
+            foreach(object item in data)
+            {
+                if (Freq.ContainsKey(item) == false)
+                {
+                    Freq.Add(item, 1);
+                }
+                else
+                {
+                    Freq[item] += 1;
+                }
+            }
+            var Ordered = from entry in Freq orderby entry.Value descending select entry;
+            List<object> OrderedList = new List<object>();
+            foreach(KeyValuePair<object, int> Pair in Ordered)
+            {
+                OrderedList.Add(Pair.Key);
+            }
+            return 
+            OrderedList;
+        }
+        public static List<object> SortBinary(List<object> data)
+        {
+            List<object> SortedData = new List<object>();
+            foreach(object item in data)
+            {
+                if ((int)item == 0)
+                {
+                    SortedData.Insert(0, item);
+                }
+                else
+                {
+                    SortedData.Add(item);
+                }
+            }
+            return SortedData;
+        }
+        public static List<object> SubSequence(List<object> data)
+        {
+            List<object> NumbersToFind = new List<object>() { 8,10,21,22,17};
+            List<object> NumbersFound = new List<object>();
+            int total = 0;
+            foreach(object item in data)
+            {
+                total += (int)item;
+            }
+            foreach (object NumberToFind in NumbersToFind)
+            {
+                for (int i = 0; i < data.Count(); i++)
+                {
+                    if(data.Contains(NumberToFind))
+                    {
+                        NumbersFound.Add(NumberToFind);
+                    }
+                    if(total == (int)NumberToFind)
+                    {
+                        NumbersFound.Add(NumberToFind);
+                    }
+                    try
+                    {
+                        if (((int)data[i] + (int)(data[i + 1])) == (int)NumberToFind)
+                        {
+                            NumbersFound.Add(NumberToFind);
+                        }
+                    }
+                    catch { }
+                    try
+                    {
+                        if (((int)data[i] + (int)(data[i + 1]) + (int)(data[i - 1])) == (int)NumberToFind)
+                        {
+                            NumbersFound.Add(NumberToFind);
 
+                        }
+                    }
+                    catch { }
+                }
+            }
+            return NumbersFound;
+        }
     }
 }
