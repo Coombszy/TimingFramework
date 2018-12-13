@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace TimingFramework
 {
@@ -23,13 +24,47 @@ namespace TimingFramework
             TestTimer.RunMultipleTests(10);
             TestTimer.CreateCSV();*/
 
+
+            //manual testing of custom data structure!
+            Console.WriteLine("-MANUAL TESTING ACTIVE-");
+
+            List<object> dataMAN = CreateTestDataSTRING(10000, 1000);
+            dataMAN.Add("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ");
+            Console.WriteLine("DATASET GENERATED! STARTING TESTS!");
+
+            Console.WriteLine("TEST 1 STARTED! (Standard List<object>)");
+            DateTime THEN1, NOW1; bool Result1;
+            THEN1 = DateTime.Now;
+            Result1 = dataMAN.Contains("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ");
+            NOW1 = DateTime.Now;
+            Console.WriteLine("TEST 1 COMPLETE!");
+
+            Console.WriteLine("TEST 2 STARTED! (Custom Data Node Structure)");
+            Console.WriteLine("  - Building Data Structure!");
+            NodeStructure NS = new NodeStructure(dataMAN);
+            Console.WriteLine("  - Structure built successfully! running test objective!");
+            DateTime THEN, NOW; bool Result;
+            THEN = DateTime.Now;
+            Result = NS.Contains("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ");
+            NOW = DateTime.Now;
+            Console.WriteLine("TEST 2 COMPLETE!");
+
+
+            Console.WriteLine("Test Results!");
+            Console.WriteLine("(Test1)List.Contains(DATA):" + Math.Abs((NOW1 - THEN1).TotalSeconds));
+            Console.WriteLine("(Test2)NodeStructure.Contains(DATA):" + Math.Abs((NOW - THEN).TotalSeconds));
+
+            Console.ReadLine();
+            //-----------
+
+
             //--Test Data definition--
             Timer tmr = new Timer();
             //List<object> data = CreateTestDataSTRING(100000, 4);
             //List<object> data = CreateTestDataINT(10000000);
             //List<object> data = CreateTestDataBINARY(1000);
-            List<object> data = new List<object> { 10, 3, 1, 7 };
-
+            List<object> data = CreateTestDataSTRING(100000, 20);
+            data.Add("ZZZZZZZZZZZZZZZZZZZZ");
 
             //--Setting Test data--
             tmr.SetData(data);
